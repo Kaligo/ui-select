@@ -13,6 +13,8 @@
        aria-expanded="true"
        aria-owns="ui-select-choices-{{ $select.generatedId }}"
        aria-label="{{ $select.baseTitle }}"
+       tabindex="{{ $select.searchInputTabindex }}"
+       aria-hidden="{{ $select.searchEnabled }}"
              class="ui-select-search select2-input"
              ng-model="$select.search">
     </div>
