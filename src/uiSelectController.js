@@ -611,8 +611,7 @@ uis.controller('uiSelectCtrl',
     return processed;
   }
 
-  // Bind to keyboard shortcuts
-  ctrl.searchInput.on('keydown', function(e) {
+  var keydownCallback = function(e) {
 
     var key = e.which;
 
@@ -663,7 +662,18 @@ uis.controller('uiSelectCtrl',
       e.stopPropagation();
     }
 
+  };
+
+  $timeout(function() {
+    ctrl.selectMatch = $element.querySelectorAll('.ui-select-match');
+    ctrl.selectMatch.on('keydown', keydownCallback);
+    if (ctrl.selectMatch.length !== 1) {
+      throw uiSelectMinErr('selectMatch', "Expected 1 .ui-select-match but got '{0}'.", ctrl.selectMatch.length);
+    }
   });
+
+  // Bind to keyboard shortcuts
+  ctrl.searchInput.on('keydown', keydownCallback);
 
   ctrl.searchInput.on('paste', function (e) {
     var data;

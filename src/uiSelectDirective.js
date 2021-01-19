@@ -76,6 +76,7 @@ uis.directive('uiSelect',
 
         scope.$watch(function () { return scope.$eval(attrs.searchEnabled); }, function(newVal) {
           $select.searchEnabled = newVal !== undefined ? newVal : uiSelectConfig.searchEnabled;
+          $select.searchInputTabindex = $select.searchEnabled ? 0 : -1;
         });
 
         scope.$watch('sortable', function() {
