@@ -1,7 +1,7 @@
 /*!
  * ui-select
  * http://github.com/angular-ui/ui-select
- * Version: 0.19.8 - 2021-02-08T07:24:51.030Z
+ * Version: 0.19.8 - 2021-02-08T08:34:23.510Z
  * License: MIT
  */
 
@@ -1126,15 +1126,15 @@ uis.directive('uiSelect',
           $select.searchInputTabindex = $select.searchEnabled ? 0 : -1;
         });
 
-        scope.$watch(function () { return scope.$eval(attrs.searchAriaLabel); }, function(newVal) {
+        scope.$watch('searchAriaLabel', function(newVal) {
           $select.searchAriaLabel = newVal !== undefined ? newVal : uiSelectConfig.searchAriaLabel;
         });
 
-        scope.$watch(function () { return scope.$eval(attrs.choicesAriaLabel); }, function(newVal) {
+        scope.$watch('choicesAriaLabel', function(newVal) {
           $select.choicesAriaLabel = newVal !== undefined ? newVal : uiSelectConfig.choicesAriaLabel;
         });
 
-        scope.$watch(function () { return scope.$eval(attrs.choicesGroupAriaLabel); }, function(newVal) {
+        scope.$watch('choicesGroupAriaLabel', function(newVal) {
           $select.choicesGroupAriaLabel = newVal !== undefined ? newVal : uiSelectConfig.choicesGroupAriaLabel;
         });
 
