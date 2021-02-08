@@ -79,16 +79,16 @@ uis.directive('uiSelect',
           $select.searchInputTabindex = $select.searchEnabled ? 0 : -1;
         });
 
-        scope.$watch('searchAriaLabel', function(newVal) {
-          $select.searchAriaLabel = newVal !== undefined ? newVal : uiSelectConfig.searchAriaLabel;
+        attrs.$observe('searchAriaLabel', function() {
+          $select.searchAriaLabel = attrs.searchAriaLabel !== undefined ? attrs.searchAriaLabel : uiSelectConfig.searchAriaLabel;
         });
 
-        scope.$watch('choicesAriaLabel', function(newVal) {
-          $select.choicesAriaLabel = newVal !== undefined ? newVal : uiSelectConfig.choicesAriaLabel;
+        attrs.$observe('choicesAriaLabel', function() {
+          $select.choicesAriaLabel = attrs.choicesAriaLabel !== undefined ? attrs.choicesAriaLabel : uiSelectConfig.choicesAriaLabel;
         });
 
-        scope.$watch('choicesGroupAriaLabel', function(newVal) {
-          $select.choicesGroupAriaLabel = newVal !== undefined ? newVal : uiSelectConfig.choicesGroupAriaLabel;
+        attrs.$observe('choicesGroupAriaLabel', function() {
+          $select.choicesGroupAriaLabel = attrs.choicesGroupAriaLabel !== undefined ? attrs.choicesGroupAriaLabel : uiSelectConfig.choicesGroupAriaLabel;
         });
 
         scope.$watch('sortable', function() {
