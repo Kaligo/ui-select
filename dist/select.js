@@ -1,7 +1,7 @@
 /*!
  * ui-select
  * http://github.com/angular-ui/ui-select
- * Version: 0.19.8 - 2021-02-08T09:12:06.842Z
+ * Version: 0.19.8 - 2021-02-11T02:38:09.546Z
  * License: MIT
  */
 
@@ -1127,15 +1127,15 @@ uis.directive('uiSelect',
         });
 
         attrs.$observe('searchAriaLabel', function() {
-          $select.searchAriaLabel = attrs.searchAriaLabel !== undefined ? attrs.searchAriaLabel : uiSelectConfig.searchAriaLabel;
+          $select.searchAriaLabel = attrs.searchAriaLabel ? attrs.searchAriaLabel : uiSelectConfig.searchAriaLabel;
         });
 
         attrs.$observe('choicesAriaLabel', function() {
-          $select.choicesAriaLabel = attrs.choicesAriaLabel !== undefined ? attrs.choicesAriaLabel : uiSelectConfig.choicesAriaLabel;
+          $select.choicesAriaLabel = attrs.choicesAriaLabel ? attrs.choicesAriaLabel : uiSelectConfig.choicesAriaLabel;
         });
 
         attrs.$observe('choicesGroupAriaLabel', function() {
-          $select.choicesGroupAriaLabel = attrs.choicesGroupAriaLabel !== undefined ? attrs.choicesGroupAriaLabel : uiSelectConfig.choicesGroupAriaLabel;
+          $select.choicesGroupAriaLabel = attrs.choicesGroupAriaLabel ? attrs.choicesGroupAriaLabel : uiSelectConfig.choicesGroupAriaLabel;
         });
 
         scope.$watch('sortable', function() {
