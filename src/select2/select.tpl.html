@@ -12,7 +12,7 @@
         role="combobox"
         aria-expanded="true"
         aria-owns="ui-select-choices-{{ $select.generatedId }}"
-        aria-label=""
+        aria-label="{{ 'Selected, ' + $select.searchAriaLabel }}"
         tabindex="{{ $select.searchInputTabindex }}"
         class="ui-select-search select2-input"
         ng-model="$select.search">
