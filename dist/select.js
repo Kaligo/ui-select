@@ -1,7 +1,7 @@
 /*!
  * ui-select
  * http://github.com/angular-ui/ui-select
- * Version: 0.19.8 - 2021-02-22T03:12:19.540Z
+ * Version: 0.19.8 - 2021-02-22T03:24:16.067Z
  * License: MIT
  */
 
@@ -933,9 +933,68 @@ uis.controller('uiSelectCtrl',
 
   };
 
+  var keydownCallbackOnMatch = function(e) {
+
+    var key = e.which;
+
+    if (~[KEY.ENTER,KEY.ESC].indexOf(key)){
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
+    if (~[KEY.TAB].indexOf(key)){
+      e.stopPropagation();
+      return;
+    }
+
+    $scope.$apply(function() {
+
+      var tagged = false;
+
+      if (ctrl.items.length > 0 || ctrl.tagging.isActivated) {
+        if(!_handleDropDownSelection(key) && !ctrl.searchEnabled) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+        if ( ctrl.taggingTokens.isActivated ) {
+          for (var i = 0; i < ctrl.taggingTokens.tokens.length; i++) {
+            if ( ctrl.taggingTokens.tokens[i] === KEY.MAP[e.keyCode] ) {
+              // make sure there is a new value to push via tagging
+              if ( ctrl.search.length > 0 ) {
+                tagged = true;
+              }
+            }
+          }
+          if ( tagged ) {
+            $timeout(function() {
+              ctrl.searchInput.triggerHandler('tagged');
+              var newItem = ctrl.search.replace(KEY.MAP[e.keyCode],'').trim();
+              if ( ctrl.tagging.fct ) {
+                newItem = ctrl.tagging.fct( newItem );
+              }
+              if (newItem) ctrl.select(newItem, true);
+            });
+          }
+        }
+      }
+
+    });
+
+    if(KEY.isVerticalMovement(key) && ctrl.items.length > 0){
+      _ensureHighlightVisible();
+    }
+
+    if (key === KEY.ENTER || key === KEY.ESC) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
+  };
+
+
   $timeout(function() {
     ctrl.selectMatch = $element.querySelectorAll('.ui-select-match');
-    ctrl.selectMatch.on('keydown', keydownCallback);
+    ctrl.selectMatch.on('keydown', keydownCallbackOnMatch);
     if (ctrl.selectMatch.length !== 1) {
       throw uiSelectMinErr('selectMatch', "Expected 1 .ui-select-match but got '{0}'.", ctrl.selectMatch.length);
     }
