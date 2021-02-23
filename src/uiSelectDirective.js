@@ -76,6 +76,19 @@ uis.directive('uiSelect',
 
         scope.$watch(function () { return scope.$eval(attrs.searchEnabled); }, function(newVal) {
           $select.searchEnabled = newVal !== undefined ? newVal : uiSelectConfig.searchEnabled;
+          $select.searchInputTabindex = $select.searchEnabled ? 0 : -1;
+        });
+
+        attrs.$observe('searchAriaLabel', function() {
+          $select.searchAriaLabel = attrs.searchAriaLabel ? attrs.searchAriaLabel : uiSelectConfig.searchAriaLabel;
+        });
+
+        attrs.$observe('choicesAriaLabel', function() {
+          $select.choicesAriaLabel = attrs.choicesAriaLabel ? attrs.choicesAriaLabel : uiSelectConfig.choicesAriaLabel;
+        });
+
+        attrs.$observe('choicesGroupAriaLabel', function() {
+          $select.choicesGroupAriaLabel = attrs.choicesGroupAriaLabel ? attrs.choicesGroupAriaLabel : uiSelectConfig.choicesGroupAriaLabel;
         });
 
         scope.$watch('sortable', function() {
