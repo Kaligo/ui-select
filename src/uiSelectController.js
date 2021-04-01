@@ -604,7 +604,10 @@ uis.controller('uiSelectCtrl',
 
     var key = e.which;
 
-    if (~[KEY.ENTER,KEY.ESC,KEY.TAB].indexOf(key)){
+    if (
+      ~[KEY.ENTER,KEY.ESC].indexOf(key) ||
+      (~[KEY.TAB].indexOf(key) && !ctrl.searchEnabled)
+    ){
       e.preventDefault();
       e.stopPropagation();
     }
